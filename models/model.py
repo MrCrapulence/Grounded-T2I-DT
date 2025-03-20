@@ -47,6 +47,7 @@ def build_model_combined(args, backbone, is_inference=False):
     losses = ["labels", "boxes", "cardinality"]
     if args.contrastive_align_loss:
         losses += ["contrastive_align"]
+    # 计算损失
     criterion = SetCriterion(
             num_classes,
             matcher=matcher,

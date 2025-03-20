@@ -761,7 +761,7 @@ def main():
 
     optimizer = optimizer_cls(
         # lora_layers.parameters(),
-        dpt.parameters(), 
+        dpt.parameters(), # 仅仅优化判别器参数
         lr=args.learning_rate,
         betas=(args.adam_beta1, args.adam_beta2),
         weight_decay=args.adam_weight_decay,
@@ -965,6 +965,7 @@ def main():
                 loss_contrast_t2i, loss_contrast_i2t = contrastive_loss(img_cond_different_txt, different_img_cond_same_txt, all_txt, logit_scale)
                 loss_dict = {'loss_contrastive_i2t': loss_contrast_i2t, 'loss_contrastive_t2i': loss_contrast_t2i}
                 loss_dict.update(criterion(outputs, targets, positive_map))
+                # 加权求和
                 loss = sum(loss_dict[k] * loss_weight_dict[k] for k in loss_dict.keys() if k in loss_weight_dict)
                 loss_dict['loss'] = loss
 
@@ -981,7 +982,7 @@ def main():
                 
                 if accelerator.sync_gradients:
                     params_to_clip = dpt.parameters()
-                    accelerator.clip_grad_norm_(params_to_clip, args.max_grad_norm)
+                    accelerator.clip_grad_norm_(params_to_clip, args.max_grad_norm) # 梯度裁剪
                 optimizer.step()
                 lr_scheduler.step()
                 optimizer.zero_grad()
