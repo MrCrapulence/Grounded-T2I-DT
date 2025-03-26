@@ -57,7 +57,7 @@ First, download the [checkpoint (v2.1)](https://huggingface.co/leigangqu/DPT-T2I
 Run `txt2img.py`: 
 
 ```python
-python txt2img.py --gpuid 0 --prompt "a painting of a virus monster playing guitar"
+python txt2img.py --gpu 0 --prompt "a painting of a virus monster playing guitar"
 ```
 
 The generated images can be seen in the `./outputs` directory. 
