@@ -23,12 +23,14 @@ def build_model_combined(args, backbone, is_inference=False):
         clip_dim = 768
     else:
         raise ValueError(f'Unknown pre-trained model: {args.pretrained_model_name_or_path}')
+
+    num_classes = 255
     model = DiffQformerCombined(
         backbone,
         position_embedding, 
         timestep_embedding, 
         transformer,
-        num_classes=255,
+        num_classes=num_classes,
         num_queries_matching=args.num_queries_matching,
         num_queries_rec=args.num_queries_rec, 
         aux_loss=False,
@@ -49,7 +51,7 @@ def build_model_combined(args, backbone, is_inference=False):
         losses += ["contrastive_align"]
     # 计算损失
     criterion = SetCriterion(
-            num_classes,
+            num_classes=num_classes,
             matcher=matcher,
             eos_coef=args.eos_coef,
             losses=losses,

@@ -334,7 +334,7 @@ class RefExpDetection(ModulatedDetection):
     pass
 
 
-def build_dataset(args, image_set, coco_path, refexp_dataset_name, refexp_ann_path, ann_caption_file, test, test_type, masks=False):
+def build_dataset(args, image_set, coco_path, refexp_dataset_name, refexp_ann_path, ann_caption_file, test, test_type, masks=False, **extra_args):
     img_dir = Path(coco_path) / "train2014"
 
     if refexp_dataset_name in ["refcoco", "refcoco+", "refcocog"]:
@@ -362,7 +362,7 @@ def build_dataset(args, image_set, coco_path, refexp_dataset_name, refexp_ann_pa
 
 
 def build_dataset_combined(args, image_set, coco_path, refexp_dataset_name, refexp_ann_path, ann_caption_file, test, test_type, 
-                            masks=False, tsv_path='../dataset/ITM/coco/train_hard_neg_t20_i4OpenClip_ViT-H-14.tsv', latent_path=None):
+                            masks=False, tsv_path='../dataset/ITM/coco/train_hard_neg_t20_i4OpenClip_ViT-H-14.tsv', latent_path=None, **extra_args):
     img_dir = Path(coco_path) / "train2014"
 
     if refexp_dataset_name in ["refcoco", "refcoco+", "refcocog", "refall"]:
@@ -389,7 +389,7 @@ def build_dataset_combined(args, image_set, coco_path, refexp_dataset_name, refe
         tokenizer=tokenizer,
         clip_tokenizer=clip_tokenizer, 
         transforms=make_diff_rec_transforms((args.resolution, args.resolution)), # make_coco_transforms(image_set, cautious=True),
-        tsv_path=tsv_path, 
+        # tsv_path=tsv_path, 
         is_train = not test, 
         latent_path = latent_path
     )
