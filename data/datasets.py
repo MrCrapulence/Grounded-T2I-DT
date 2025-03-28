@@ -13,7 +13,7 @@ from data.dataset.layoutllm_t2i import LayoutLLM_T2I
 
 def get_dataset(dataset_name, root_dir, transform=None, resize=512, scoring_only=False, tokenizer=None, split='val', 
                 max_train_samples=None, hard_neg=False, targets=None, neg_img=False, mixed_neg=False, details=False, 
-                args=None, combined=False, dataset_dir='../dataset/'):
+                args=None, combined=False, dataset_dir='/root/autodl-tmp/dataset/'):
     if dataset_name == 'mscoco_hard_negative':
         root_dir = dataset_dir + 'coco/images/train2014'
         matching_dir = dataset_dir + 'ITM/coco/train_hard_neg_t20_i4OpenClip_ViT-H-14_ReC'

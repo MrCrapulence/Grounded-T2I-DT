@@ -244,7 +244,7 @@ class ModulatedDetection(torchvision.datasets.CocoDetection):
 
 class MatchingReCCombined(torchvision.datasets.CocoDetection):
     def __init__(self, img_folder, ann_file, ann_caption_file, return_masks, return_tokens, tokenizer, transforms, 
-                    clip_tokenizer, latent_path=None, is_train=False, matching_dir='../dataset/ITM/coco/train_hard_neg_t20_i4OpenClip_ViT-H-14'):
+                    clip_tokenizer, latent_path=None, is_train=False, matching_dir='/root/autodl-tmp/dataset/ITM/coco/train_hard_neg_t20_i4OpenClip_ViT-H-14'):
         super(MatchingReCCombined, self).__init__(img_folder, ann_file)
         self.img_folder = img_folder
         self._transforms = transforms
@@ -362,7 +362,7 @@ def build_dataset(args, image_set, coco_path, refexp_dataset_name, refexp_ann_pa
 
 
 def build_dataset_combined(args, image_set, coco_path, refexp_dataset_name, refexp_ann_path, ann_caption_file, test, test_type, 
-                            masks=False, tsv_path='../dataset/ITM/coco/train_hard_neg_t20_i4OpenClip_ViT-H-14.tsv', latent_path=None, **extra_args):
+                            masks=False, tsv_path='/root/autodl-tmp/dataset/ITM/coco/train_hard_neg_t20_i4OpenClip_ViT-H-14.tsv', latent_path=None, **extra_args):
     img_dir = Path(coco_path) / "train2014"
 
     if refexp_dataset_name in ["refcoco", "refcoco+", "refcocog", "refall"]:

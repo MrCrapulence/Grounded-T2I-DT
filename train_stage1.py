@@ -395,7 +395,7 @@ def parse_args():
     parser.add_argument(
         '--img_root', 
         type=str, 
-        default='../dataset/coco/images'
+        default='/root/autodl-tmp/dataset/coco/images'
     )
     parser.add_argument(
         '--hard_neg', 

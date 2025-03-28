@@ -27,3 +27,5 @@ transformers==4.29.2
 wandb==0.15.4
 xformers==0.0.16
 pytorch-lightning==1.9.2
+einops
+pycocotools

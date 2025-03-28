@@ -14,7 +14,7 @@ from .transforms import diffusers_preprocess
 
 class MSCOCODatasetHardNegtive(Dataset):
     def __init__(self, root_dir, transform, resize=512, split='val', tokenizer=None, 
-                hard_neg=True, neg_img=False, mixed_neg=False, matching_dir='', tsv_path='../dataset/ITM/coco/train_hard_neg_t20_i4OpenClip_ViT-H-14.tsv', 
+                hard_neg=True, neg_img=False, mixed_neg=False, matching_dir='', tsv_path='/root/autodl-tmp/dataset/ITM/coco/train_hard_neg_t20_i4OpenClip_ViT-H-14.tsv', 
                 latent_path=None):
         self.root_dir = root_dir
         self.resize = resize
@@ -108,7 +108,7 @@ class MSCOCODatasetHardNegtive(Dataset):
 
 class ValidMSCOCODatasetHardNegtive(Dataset):
     def __init__(self, root_dir, transform, resize=512, split='val', tokenizer=None, hard_neg=False, 
-                    tsv_path='../dataset/ITM/coco/val_hard_neg_t20_i4OpenClip_ViT-H-14.tsv', neg_img=False):
+                    tsv_path='/root/autodl-tmp/dataset/ITM/coco/val_hard_neg_t20_i4OpenClip_ViT-H-14.tsv', neg_img=False):
         self.root_dir = root_dir
         self.resize = resize
         self.data = pd.read_csv(tsv_path, delimiter='\t')
