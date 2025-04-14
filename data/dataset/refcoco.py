@@ -252,7 +252,8 @@ class MatchingReCCombined(torchvision.datasets.CocoDetection):
         self.clip_tokenizer = clip_tokenizer
         self.is_train = is_train
         assert is_train, 'Other split settings are not implemented!'
-        self.latent_path = latent_path
+        # self.latent_path = latent_path    TODO
+        self.latent_path = None
         if is_train: 
             self.matching_dir = matching_dir
             self.imgname2txtid = load_json(os.path.join(self.matching_dir, 'imgname2txtid.json'))
@@ -389,7 +390,7 @@ def build_dataset_combined(args, image_set, coco_path, refexp_dataset_name, refe
         tokenizer=tokenizer,
         clip_tokenizer=clip_tokenizer, 
         transforms=make_diff_rec_transforms((args.resolution, args.resolution)), # make_coco_transforms(image_set, cautious=True),
-        # tsv_path=tsv_path, 
+        tsv_path=tsv_path, 
         is_train = not test, 
         latent_path = latent_path
     )
