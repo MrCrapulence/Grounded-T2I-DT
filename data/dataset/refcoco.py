@@ -389,8 +389,9 @@ def build_dataset_combined(args, image_set, coco_path, refexp_dataset_name, refe
         return_tokens=True,
         tokenizer=tokenizer,
         clip_tokenizer=clip_tokenizer, 
-        transforms=make_diff_rec_transforms((args.resolution, args.resolution)), # make_coco_transforms(image_set, cautious=True),
-        tsv_path=tsv_path, 
+        transforms=make_diff_rec_transforms((args.resolution, args.resolution)), 
+        # make_coco_transforms(image_set, cautious=True),
+        # tsv_path=tsv_path, 
         is_train = not test, 
         latent_path = latent_path
     )
